@@ -1,11 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AnecdotForm from './components/AnecdoteForm';
 import AnecdoteList from './components/AnecdoteList';
-import { voteAction, createAnecdote } from './reducers/anecdoteReducer';
 
 const App = () => {
   const anecdotes = useSelector((state) =>
-    state.sort((a, b) => b.votes - a.votes)
+    state.anecdotes.sort((a, b) => b.votes - a.votes)
   );
 
   return (
