@@ -15,7 +15,12 @@ const AnecdoteList = () => {
 
   const vote = (anecdote) => {
     dispatch(voteAction(anecdote));
-    dispatch(notify(anecdote.content));
+    dispatch(
+      notify({
+        message: `you voted '${anecdote.content}'`,
+        resetSeconds: 10,
+      })
+    );
   };
 
   return (
