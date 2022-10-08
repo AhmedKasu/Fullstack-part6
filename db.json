@@ -39,6 +39,11 @@
       "content": "Testing one more time",
       "votes": 5,
       "id": 77098
+    },
+    {
+      "content": "The anecdotesFoem component is now using connect to dispatch actions",
+      "votes": 3,
+      "id": 77099
     }
   ]
 }
