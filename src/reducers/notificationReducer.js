@@ -7,9 +7,13 @@ const notificationSlice = createSlice({
   initialState,
   reducers: {
     setNotification(state, action) {
-      const notification = action.payload;
+      const notification = action.payload.message;
+      const timerId = action.payload.timerId;
+
+      clearTimeout(timerId - 1);
       state[0] = { message: notification };
     },
+
     resetNotification(state, action) {
       return (state = initialState);
     },
@@ -18,12 +22,14 @@ const notificationSlice = createSlice({
 
 export const notify = (notificationObject) => {
   return (dispatch) => {
-    const resetTime = notificationObject.resetSeconds * 100;
-    dispatch(setNotification(notificationObject.message));
+    const resetTime = notificationObject.resetSeconds * 1000;
+    const message = notificationObject.message;
 
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       dispatch(resetNotification());
     }, resetTime);
+
+    dispatch(setNotification({ message, timerId }));
   };
 };
 
